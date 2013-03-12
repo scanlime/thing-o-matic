@@ -50,7 +50,7 @@ The easiest way I've found to work with a Slic3r config from this repository is 
 ln -s ~/src/thing-o-matic/Slic3r ~/Library/Application\ Support/Slic3r
 ```
 
-Now you should see some aptly named presets in Slic3r. Use the "Scanbot HQ" (high quality) print settings, "Plain ABS" filament, and the "Scanbot" printer. If you modify the settings in Slic3r, you can check them back into git and submit a push request.
+Now you should see some aptly named presets in Slic3r. Use the "Scanbot HQ" (high quality) print settings, "Plain ABS" filament, and the "Scanbot" printer. If you modify the settings in Slic3r, you can check them back into git and submit a pull request.
 
 What to watch out for
 ---------------------
@@ -64,15 +64,25 @@ There are plenty of other failure modes possible. There are really no safety fea
 FAQ
 ---
 
-Can I use this with ReplicatorG? Not easily. The stock Makerbot firmware is kind of terrible and doesn't handle stepper extruders especially well. The ScribbleJ firmware is designed for a Reprap-style toolchain. It's probably possible to use ReplicatorG, but Reprap tools like Pronterface and Slic3r were easier to adapt to this printer's oddball configuration.
+Can I use this with ReplicatorG?
 
-Should I use the "Exhaust" fan on the side of the printer? Probably not. It tends to cool models faster than necessary, reducing layer adhesion. I tend to only use it after the model has finished printing, if at all.
+> Not easily. The stock Makerbot firmware is kind of terrible and doesn't handle stepper extruders especially well. The ScribbleJ firmware is designed for a Reprap-style toolchain. It's probably possible to use ReplicatorG, but Reprap tools like Pronterface and Slic3r were easier to adapt to this printer's oddball configuration.
 
-Can I print directly over USB rather than over SD card? Maybe. I don't, because the FTDI drivers for Mac OS are terrible. Your mileage may vary, but I've had problems with the print stuttering due to uneven througput over the USB port. The SD card is much more reliable, if a bit clunky. But on the bright side, you don't have to keep a computer tethered.
+Should I use the "Exhaust" fan on the side of the printer?
 
-Can I control the printer manually, for maintenance purposes? Yes. Hook up a USB cable and use "Pronterface", the Reprap GUI tool.
+> Probably not. It tends to cool models faster than necessary, reducing layer adhesion. I tend to only use it after the model has finished printing, if at all.
 
-How do I switch colors? Not easily.. you'll need to use Pronterface to back out the existing filament, then reload new filament. You need to do this with the extruder heated, and manually step the extruder forward enough to see the new filament extruding before you try a print. The spool box is a bit annoying to open, so I tend to just lay the filament coil near the printer when using other colors.
+Can I print directly over USB rather than over SD card?
+
+> Maybe. I don't, because the FTDI drivers for Mac OS are terrible. Your mileage may vary, but I've had problems with the print stuttering due to uneven througput over the USB port. The SD card is much more reliable, if a bit clunky. But on the bright side, you don't have to keep a computer tethered.
+
+Can I control the printer manually, for maintenance purposes?
+
+> Yes. Hook up a USB cable and use "Pronterface", the Reprap GUI tool.
+
+How do I switch colors?
+
+> Not easily... you'll need to use Pronterface to back out the existing filament, then reload new filament. You need to do this with the extruder heated, and manually step the extruder forward enough to see the new filament extruding before you try a print. The spool box is a bit annoying to open, so I tend to just lay the filament coil near the printer when using other colors.
 
 Who do I call when this shit breaks?
 ------------------------------------
