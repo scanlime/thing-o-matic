@@ -32,7 +32,7 @@ How do I use it?
 The general workflow:
 
 1. Use Slic3r to convert an STL (triangle mesh) model to GCode (tool path). You can optionally view the GCode to check its sanity using a tool like Pleasant3D.
-2. Place the GCode on an SD card, with the filename "sjfwauto.gcd"
+2. Place the GCode on an SD card, with the filename `sjfwauto.gcd`
 3. Ensure that the build surface is clean and flat. Replace the Kapton tape if it has any tears.
 4. Insert the SD card and turn on the printer.
 5. The printer will warm up, home the axes, warm up some more, then start extruding to get the nozzle uniformly full of molten plastic.
@@ -40,6 +40,17 @@ The general workflow:
 7. Watch the model build. Actually keep an eye on the printer, it's not the most reliable machine ever.
 8. Wait for the model to cool before removing it. It will be much easier, and you won't risk bending the plastic while it's still hot.
 9. Clean up, and turn the printer off.
+
+Slic3r Config
+-------------
+
+The easiest way I've found to work with a Slic3r config from this repository is to just create a symbolic link. For example:
+
+```
+ln -s ~/src/thing-o-matic/Slic3r ~/Library/Application\ Support/Slic3r
+```
+
+Now you should see some aptly named presets in Slic3r. Use the "Scanbot HQ" (high quality) print settings, "Plain ABS" filament, and the "Scanbot" printer. If you modify the settings in Slic3r, you can check them back into git and submit a push request.
 
 What to watch out for
 ---------------------
@@ -66,6 +77,6 @@ How do I switch colors? Not easily.. you'll need to use Pronterface to back out 
 Who do I call when this shit breaks?
 ------------------------------------
 
-Micah Elizabeth Scott <beth@scanlime.org>
+Micah Elizabeth Scott, <beth@scanlime.org>
 
 If you have any improvements to this documentation or the settings, pull requests would be much appreciated :)
