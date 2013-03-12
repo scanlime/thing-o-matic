@@ -1,0 +1,109 @@
+Problems:
+
+  - Glue issues with MK5 brackets
+  - Increasing print resolution
+  - Not-at-all-stable extruder temperature
+  - Warping belt
+  - Belt tension
+  - Software/firmware bug caused head->belt crash
+  - Extruder motor stalls, H-bridge overheating
+
+Solutions:
+
+  - Extruder: Using relay w/ lower voltage higher current power supply
+  - Ordered parts for stepper extruder
+  - Still fidgeting with belt tension
+  - Using Bre's PID parameters: 5.1328 / 0.0547 / 108.0
+  - Trying higher resolution skeinforge settings
+  - Angled the silicone wiper, to avoid flinging plastic bits out the front
+
+Extruder motor:
+  - Good rate: 9-10v
+  - Very slow: 6v
+  - Even slower, min. for cold start: 4.5v
+
+  0.2mm : 5-6v
+  0.3mm : 9v
+  0.4mm : 12v
+
+Feed rates:
+  - 60 mm/s: sounds good, usually works, but occasionally loses steps
+  - 58 mm/s: still losing steps
+  - 50 mm/s: same. May be good travel rate still?
+  - 37 mm/s: testing
+
+-------
+
+FX2/FPGA/FTDI control musings...
+
+100 mm/sec * 16 steps/mm * 16 microsteps/step = 25600 microsteps/sec
+Only 25 khz! Nyquist and plenty of headroom, and you're still way under 1 MHz.
+So, sampling rates for sending raw control signals over USB aren't too bad at all.
+Software on the host could generate these control bitstreams with very long look-ahead if they want.
+
+What price am I trying to beat?
+  Motherboard: $85
+  Stepper driver: $39 * 3 (4?)
+  Extruder: $90
+  Arduino Mega: $60
+
+$352? really????
+
+Goals:
+ - Precise and robust motion control with no communication bottlenecks
+ - Simple and cheap
+ - No firmware that isn't loadable over USB (or some other interface)
+ - Easy interface: USB, ethernet, bluetooth?
+
+Platforms:
+ - FPGA + FX2 (like Saxo, twlfpga, etc.)
+ - Propeller + FTDI / ENC18J20 / Bluetooth
+ - FTDI only
+ - FTDI + AVR <-- Can this work?
+ - FTDI + CPLD
+ - FTDI + CPLD + AVR
+
+How much buffer memory?
+Do I want optional output devices? (LCD is trivial on Propeller)
+Propeller + FTDI can be pretty high speed (2 Mbps). More than real-time, but copies will still be slow.
+
+ARM? Something like STR912FAW44X6. 96K memory, ethernet, FS USB
+
+FS USB: Copy gcode at 1MB/sec or so. Not bad!
+
+Minimal:
+ - FT2232H
+ - One channel: Async bit-bang mode for motor control. Clocked by baud generator
+ - Other channel: low-speed control (I2C?) for A/Ds, oscillator, etc.
+ - AVR for temperature control loop
+ - OR, run temp. control on host, with hardware watchdog to cut power if the host loses contact?
+ - Discrete stepper controller
+
+OR:
+ - FX2
+ - FIFO to motor control signals
+ - Software control for temperature, status display, etc.
+ - Discrete stepper controllers
+
+Ethernet hmm???
+
+FT2232H with async bit-bang should be *great* for the steppers. Sample rate is controlled
+by a baud rate generator. Other FTDI channel can be used for I2C, to talk to various peripherals.
+Include an on-board AVR for heater/accessory/limitswitch control, and expose the I2C port to an
+off-board connector for expansion.
+
+For heater and other peripheral control: Small AVR (ATTiny) with A/D and I2C
+ATTiny48 maybe?
+How would the firmware be reloaded? ICSP only, or could we do it serially via a bootloader?
+Yes ATtiny48/88 are self-programmable.
+~28 IOs. How many do we need?
+
+ - Stepper control override outputs: 8
+ - Limit switches: 3-6
+ - H-Bridge PWM: 0-4
+ - MOSFETs: 2-4
+ - Temperatures: 2 analog
+
+-------
+
+Lego @ 0.3mm: Too much / not enough plastic in walls. Need higher layer thickness, proper width/thickness ratio?
