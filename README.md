@@ -21,10 +21,10 @@ Modifications include:
 IMPORTANT RULES
 ---------------
 
-1. Never leave the printer unattended. If you step out, point a webcam at it or have a housemate check on it.
-2. Don't crash the nozzle into the build surface! If you aren't totally sure your Z-height is correct, recalibrate it.
-3. Keep an eye out for signs of stripped filament. You should see the pinch wheel pushing filament cleanly, not tearing it. If there are plastic flakes on the drive gear, you're getting close to stripping it.
-4. Keep an extra close eye on your print until the first layer is done. Most problems happen before this point.
+1. **Never leave the printer unattended.** If you step out, point a webcam at it or have a housemate check on it.
+2. **Don't crash the nozzle into the build surface!** If you aren't totally sure your Z-height is correct, recalibrate it.
+3. **Keep an eye out for signs of stripped filament.** You should see the pinch wheel pushing filament cleanly, not tearing it. If there are plastic flakes on the drive gear, you're getting close to stripping it.
+4. **Keep an extra close eye on your print until the first layer is done.** Most problems happen before this point.
 
 How do I use it?
 ----------------
@@ -54,6 +54,8 @@ Now you should see some aptly named presets in Slic3r. Use the "Scanbot HQ" (hig
 
 What to watch out for
 ---------------------
+
+If the SD card is fully inserted and has an "sjfwauto.gcd" file on it, that file will start running automatically after turning on the printer. This is usually how I run print jobs, but watch out for this if you turn on the printer and don't intend for it to start a job. I usually keep the SD card ejected when I'm not running a print job. If the printer is already on and you want to start a print, you can insert the card then tap the reset button on the side of the main board. The print job will start in a few seconds.
 
 The most common failure is for the pinch wheel to tear a hole in the plastic filament instead of pushing it. This could mean that the extruder is too cold, the feed rate is too fast, or the printer just doesn't like the cut of your jib. The 0.25mm nozzle is beautiful when it works, but it can be temperamental.
 
